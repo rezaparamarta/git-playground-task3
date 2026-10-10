@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const store = require("./lib/store");
 const config = require("./lib/config");
+const { formatCount } = require("./lib/format");
 
 const [command, ...rest] = process.argv.slice(2);
 
@@ -40,8 +41,7 @@ function main() {
       break;
     }
     case "count": {
-      const n = store.all().length;
-      console.log(`You have ${n} ${n === 1 ? "note" : "notes"}.`);
+      console.log(formatCount(store.all().length));
       break;
     }
     case "delete": {
